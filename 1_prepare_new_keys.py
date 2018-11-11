@@ -19,7 +19,7 @@ args = parser.parse_args()
 
 stm = Steem(node=args.node)
 # Acccount() call to make sure the to-be-recovered account actually exists
-account =  Account(args.account[0], steem_instance=stm)
+account = Account(args.account[0], steem_instance=stm)
 if account.get_owner_history() == []:
     print("\n**WARNING**: @%s has an empty owner history - recovering "
           "this account won't be possible!\n" % (account['name']))
@@ -55,8 +55,8 @@ memo = PasswordKey(account['name'], new_password, role='memo',
 #####################################################################
 print("\n1.) Store the new master password and keys safely!")
 if not args.custom_password:
-    t = PrettyTable(['New PRIVATE keys', \
-                     'DO NOT PUBLISH OR FORWARD, STORE SAFELY!'])
+    t = PrettyTable(['New PRIVATE keys', 'DO NOT PUBLISH OR FORWARD, '
+                     'STORE SAFELY!'])
     t.add_row(['Account', account['name']])
     t.add_row(['New private master password', new_password])
     t.add_row(['New private active key', active.get_private()])
@@ -67,8 +67,8 @@ if not args.custom_password:
 print("\n2.) Make sure you stored the new password and keys safely!")
 
 print("\n3.) Forward the new PUBLIC owner key to your recovery account:")
-t = PrettyTable(['New PUBLIC owner key', \
-                     'Forward this to your recovery partner'])
+t = PrettyTable(['New PUBLIC owner key', 'Forward this to your '
+                 'recovery partner'])
 t.add_row(["Account", account['name']])
 t.add_row(["New public owner key", format(owner.get_public(),
                                           stm.prefix)])

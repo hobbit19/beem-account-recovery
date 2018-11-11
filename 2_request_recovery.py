@@ -12,8 +12,9 @@ parser.add_argument("-a", "--account-to-recover", type=str, required=True,
                     help="Name of the to-be-recovered account")
 parser.add_argument("-r", "--recovery-account", type=str,
                     required=True, help="Name of the recovery account")
-parser.add_argument("-d", "--dry-mode", default=False, action="store_true",
-                    help="Dry mode, don't send any operation to the blockchain")
+parser.add_argument("-d", "--dry-mode", default=False,
+                    action="store_true", help="Dry mode, don't send "
+                    "any operation to the blockchain")
 parser.add_argument("-n", "--node", type=str, help="Optional: custom "
                     "node URL", default=None)
 args = parser.parse_args()
@@ -42,7 +43,7 @@ recovery_ak = getpass("Enter active key, owner key or master "
                       "password for @%s: " % (args.recovery_account))
 try:
     pk_check = PrivateKey(recovery_ak, prefix=stm.prefix)
-except:
+except Exception:
     # PrivateKey() failed - treat it as a master password
     pk = PasswordKey(args.recovery_account, recovery_ak,
                      role="active", prefix=stm.prefix)

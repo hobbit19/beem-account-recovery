@@ -1,7 +1,7 @@
 import json
 from beembase import operations
 from beem.account import Account
-from beemgraphenebase.account import PasswordKey
+from beemgraphenebase.account import PasswordKey, PrivateKey
 from beem.transactionbuilder import TransactionBuilder
 from beem import Steem
 from argparse import ArgumentParser
@@ -10,8 +10,9 @@ from getpass import getpass
 parser = ArgumentParser()
 parser.add_argument("account", type=str, nargs=1,
                     help="Name of the to-be-recovered account")
-parser.add_argument("-d", "--dry-mode", default=False, action="store_true",
-                    help="Dry mode, don't send any operation to the blockchain")
+parser.add_argument("-d", "--dry-mode", default=False,
+                    action="store_true", help="Dry mode, don't send "
+                    "any operation to the blockchain")
 parser.add_argument("-n", "--node", type=str, help="Optional: custom "
                     "node URL", default=None)
 args = parser.parse_args()
